@@ -22,7 +22,8 @@ module.exports = function (grunt) {
 		src: 'src',
 		dist: 'dist',
 		test: 'test',
-		tmp: '.tmp'
+		tmp: '.tmp',
+		lib: 'lib'
 	};
 
 	// TODO :: Read this from .bowerrc
@@ -95,6 +96,7 @@ module.exports = function (grunt) {
 							lrSnippet,
 							mountFolder(connect, '.tmp'),
 							mountFolder(connect, options.components),
+							mountFolder(connect, 'node_modules'),
 							mountPHP(options.base),
 							mountFolder(connect, options.base)
 						];
@@ -136,7 +138,7 @@ module.exports = function (grunt) {
 				jshintrc: '.jshintrc'
 			},
 			gruntfile: ['Gruntfile.js'],
-			scripts: ['<%= app.src %>/htdocs/js/**/*.js'],
+			scripts: ['<%= app.src %>/**/*.js', '<%= app.lib %>/**/*.js'],
 			tests: ['<%= app.test %>/**/*.js']
 		},
 		compass: {
